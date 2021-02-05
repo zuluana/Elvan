@@ -5,8 +5,8 @@
 ### TS / JS External Module Loader
 >  Load Modules from External URLs
 
-With Elvan, you can load external modules for use in your TS / JS apps, even React Native apps.
-
+Load external modules in TS / JS apps, including React Native apps.
+> 
 ### Define a Module
 ```javascript
 //  fish-feeder.js
@@ -17,10 +17,9 @@ exports = ({ food }) => {
 }
 ```
 
-###  Load a Module
+###  Load the Module
 
 ```javascript
-
 //  URL to the Module
 const url = "https://my.site/fish-feeder.js";
 
@@ -35,8 +34,6 @@ const FishFeeder = await Elvan.load(url, imports);
 //  Use the Module
 FishFeeder.feedFish();  //  Console:  'You fed the fish tasty speckles!'
 ```
-
->  Currently, it's only possible to load "Elvan" modules, but we hope to build core support or Plugins for additional, standard, module types.
 
 
 ##  React Native + Typescript
@@ -61,7 +58,7 @@ exports = ({ React, ReactNative: { View, Text } }) => {
 }
 ```
 
-### Transpile Module
+### Transpile the Module
 To load the module dynamically, it needs to be transpiled to ES6.  We can use `tsc` to do that.
 
 ```javascript
@@ -79,26 +76,57 @@ exports = ({ React, ReactNative: { View, Text } }) => {
 //# sourceMappingURL=my_module.js.map
 ```
 
-### Load a TS / RN Module
+### Load the Module
 
-```javascript
-
+```typescript
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 
-//  URL to the Module
-const url = "https://my.site/hello-box.js";
 
-//  Module Imports
-const imports = {
-  React, ReactNative
+interface MyComponentState {
+  HelloBox: undefined | React.FunctionComponent<{ name: string }>;
 }
 
-//  Load the Module
-const HelloBox = await Elvan.load(url, imports);
+class MyComponent extends React.Component<any, MyComponentState> {
 
-//  Use the Component
-const MyComponent = () => (
-  <HelloBox name="Doug">
-);
+  constructor (props: any) {
+    super(props);
+    this.state = { HelloBox: undefined };
+  }
+  async componentDidMount() {
+
+    //  URL to the Module
+    const url = "https://my.site/hello-box.js";
+
+    //  Module Imports
+    const imports = {
+      React, ReactNative
+    }
+
+    //  Load the Component
+    const HelloBox = await Elvan.load(url, imports);
+    this.setState({ HelloBox });
+  }
+
+  render() {
+    
+    const { HelloBox } = this.state;
+
+    return HelloBox ?
+      <HelloBox name="Doug" /> :
+      null
+  }
+}
 ```
+
+
+## Anti-Pitch
+
+This library is likely a band-aid until there's native support for loading via URL.  However, we are adding "Plugin Oriented Design" (POD )elements to make this library extensible.
+
+Currently, it's only possible to load "Elvan" modules, but we hope to build core support or add Plugins for standard module types.
+
+There's currently no integrity check on the URL.
+
+##  Acknowledgments
+Elvan is inspired by similar module tools including Webpack, Node, CommonJS, SystemJS, AMD, etc...
