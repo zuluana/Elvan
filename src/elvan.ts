@@ -9,14 +9,14 @@ export interface ElvanLoader {
   register: (factory: ModuleFactory) => void;
 }
 
-export interface DefaultLoadParams {
-  url: string;
-  imports: any;
-}
+// export interface DefaultLoadParams {
+//   url: string;
+//   imports: any;
+// }
 
-//  CONSIDER:  Build Plugins or (more functions) to resolve various module types, like AMD / CommonJS, etc...
+//  CONSIDER:  Build Plugins or (more functions) for various loaders to resolve various module types, like AMD / CommonJS, etc...
 
-export const load = async (url: string, imports: any = {}) => {
+export const load = async (url: string, imports?: any) => {
 
   //  Define the Module Scope
 

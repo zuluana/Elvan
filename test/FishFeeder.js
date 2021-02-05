@@ -3,9 +3,9 @@
 // import { ElvanLoader } from "../src";
 
 // declare var loader: any;
-exports = () => {
+exports = ({ food }) => {
   return {
-    getName: () => "MyModule"
+    feedFish: () => `You fed the fish ${ food }!`
   }
 }
 
