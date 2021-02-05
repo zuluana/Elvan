@@ -9,24 +9,14 @@ export interface ElvanLoader {
   register: (factory: ModuleFactory) => void;
 }
 
-// export interface DefaultLoadParams {
-//   url: string;
-//   imports: any;
-// }
-
 //  CONSIDER:  Build Plugins or (more functions) for various loaders to resolve various module types, like AMD / CommonJS, etc...
+//  CONSIDER:  Use a single object as the param set so it can be modified.
+//  CONSIDER:  Add Registers so users can build Plugins like Webpack.
 
 export const load = async (url: string, imports?: any) => {
 
   //  Define the Module Scope
-
   let exports: any;
-  // let factory: any;
-  // const loader: ElvanLoader = {
-  //   register: (_factory: ModuleFactory) => {
-  //     factory = _factory;
-  //   }
-  // };
 
   //  Get the Code
   const response = await fetch(url);

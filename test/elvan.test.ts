@@ -5,23 +5,13 @@
 import * as Elvan from '../src/elvan';
 import expect = require("expect");
 
-// const myModule = 
 describe("Elvan", () => {
 
   it("should load an external module.", async () => {
 
-    //  TODO:  Remove the token once public!
-    const myModule: any = await Elvan.load("https://raw.githubusercontent.com/CodalReef/Elvan/master/test/my_module.tsx?token=ANUDGQ2U7WFIFVNU6JTVVG3ADW6US")
-    const name = myModule.getName();
-    expect(name).toEqual("MyModule");
+    //  TODO:  Remove the token once public
+    const myModule: any = await Elvan.load("https://raw.githubusercontent.com/CodalReef/Elvan/master/test/FishFeeder.js?token=ANUDGQ7FXK53DVVZJ3A2NJTADXAZA", { food: "tasty speckles" })
+    const name = myModule.feedFish();
+    expect(name).toEqual("You fed the fish tasty speckles!");
   });
-
-  // it("should load an external module with props.", async () => {
-
-  //   //  TODO:  Remove the token once public!
-  //   const myModule: any = await Elvan.load("")
-  //   const name = myModule.getName();
-  //   expect(name).toEqual("MyModule");
-  // });
 });
-
