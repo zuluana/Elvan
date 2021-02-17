@@ -18,13 +18,13 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "^9.6.55",
     "chai": "^4.2.0",
-    "expect": "^24.1.0",
     "mocha": "^5.2.0",
     "ts-node": "^5.0.0",
     "tslint": "^5.12.1",
     "typescript": "^3.5.3"
   },
   "dependencies": {
+    "@types/chai": "^4.2.15",
     "cross-fetch": "^3.0.6"
   }
 }

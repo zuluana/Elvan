@@ -3,7 +3,7 @@
  */
 
 import * as Elvan from "../src/elvan";
-import expect = require("expect");
+import { expect } from "chai";
 
 describe("Elvan", () => {
 
@@ -12,6 +12,6 @@ describe("Elvan", () => {
     //  TODO:  Remove the token once public
     const myModule: any = await Elvan.load("https://raw.githubusercontent.com/CodalReef/Elvan/master/test/FishFeeder.js?token=ANUDGQ2H7INTXI7L5ACGA4DADXFRY", { food: "tasty speckles" });
     const name = myModule.feedFish();
-    expect(name).toEqual("You fed the fish tasty speckles!");
+    expect(name).equals("You fed the fish tasty speckles!");
   });
 });
