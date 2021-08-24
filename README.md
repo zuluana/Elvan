@@ -29,7 +29,7 @@ const imports = {
 }
 
 //  Load the Module
-const FishFeeder = await Elvan.load(url, imports);
+const FishFeeder = await Elvan.loadFromUrl(url, imports);
 
 //  Use the Module
 FishFeeder.feedFish();  //  Console:  'You fed the fish tasty speckles!'
@@ -104,7 +104,7 @@ class MyComponent extends React.Component<any, MyComponentState> {
     }
 
     //  Load the Component
-    const HelloBox = await Elvan.load(url, imports);
+    const HelloBox = await Elvan.loadFromUrl(url, imports);
     this.setState({ HelloBox });
   }
 
