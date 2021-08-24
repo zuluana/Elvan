@@ -14,11 +14,17 @@ export interface ElvanLoader {
 //  CONSIDER:  Add Registers so users can build Plugins like Webpack.
 //  TODO:  Make this "Pluggable" with Registers and similar Plugin Oriented Design (POD) principles.
 
-export const load = async (url: string, imports?: any) => {
+export const loadFromUrl = async (url: string, imports?: any) => {
 
   //  Get the Code
   const response = await fetch(url);
   const js = await response.text();
+
+  //  Load From String
+  return await loadFromString(js, imports);
+};
+
+export const loadFromString = async (js: string, imports?: any) => {
 
   //  Run the Loaded Plugin in "this" Context
   eval(js);
